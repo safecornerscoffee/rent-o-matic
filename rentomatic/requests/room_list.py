@@ -8,7 +8,7 @@ class RoomListInvalidRequest:
     def add_error(self, parameter, message):
         self.errors.append({"parameter": parameter, "message": message})
 
-    def has_error(self):
+    def has_errors(self):
         return len(self.errors) > 0
 
     def __bool__(self):
@@ -39,7 +39,7 @@ def build_room_list_request(filters=None):
                     "Key {} cannot be used".format(key)
                 )
 
-        if invalid_req.has_error():
+        if invalid_req.has_errors():
             return invalid_req
 
     return RoomListValidRequest(filters=filters)
